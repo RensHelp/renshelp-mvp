@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RensHelp — Prototype</title>
+<style>
+:root{--bg:#f5f7fb;--navy:#102033;--green:#19c77a;--green2:#0ea968;--muted:#718096;--card:#fff;--line:#e6ebf1;--red:#e85d75;--orange:#f2a93b}
+*{box-sizing:border-box} body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--navy)}
+button{font:inherit;cursor:pointer}.app{display:flex;min-height:100vh}.sidebar{width:230px;background:#102033;color:#fff;padding:24px 16px;position:fixed;inset:0 auto 0 0}.logo{font-size:25px;font-weight:800;margin:4px 8px 30px}.logo span{color:#39e594}.tag{font-size:11px;color:#aebdcb;margin:-22px 8px 28px}.nav button{display:block;width:100%;border:0;background:transparent;color:#b9c6d2;text-align:left;padding:12px 13px;border-radius:10px;margin:4px 0}.nav button.active,.nav button:hover{background:#1c344b;color:#fff}.main{margin-left:230px;padding:28px;max-width:1300px;width:100%}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}.top h1{margin:0;font-size:26px}.pill{background:#e9fff4;color:#0b9b5c;padding:7px 11px;border-radius:20px;font-size:12px;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 3px 12px #10203308}.stat .num{font-size:27px;font-weight:800;margin:7px 0}.muted{color:var(--muted);font-size:13px}.section{margin-top:20px}.sectionhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.sectionhead h2{font-size:17px;margin:0}.lead{display:flex;align-items:center;justify-content:space-between;padding:15px 0;border-bottom:1px solid var(--line)}.lead:last-child{border-bottom:0}.person{display:flex;gap:11px;align-items:center}.avatar{width:38px;height:38px;border-radius:50%;background:#dff8eb;display:grid;place-items:center;font-weight:800;color:#07965a}.status{font-size:11px;padding:5px 8px;border-radius:14px;background:#eef3f7;color:#516173;font-weight:700}.status.new{background:#e9fff4;color:#07965a}.status.follow{background:#fff4df;color:#a86b00}.btn{border:0;background:var(--green);color:#fff;padding:10px 14px;border-radius:9px;font-weight:750}.btn.secondary{background:#fff;color:var(--navy);border:1px solid var(--line)}.btn.danger{background:#fff0f2;color:#c83d58}.actions{display:flex;gap:8px;flex-wrap:wrap}.screen{display:none}.screen.active{display:block}.conversation{max-width:760px}.bubble{padding:13px 15px;border-radius:14px;margin:10px 0;max-width:80%;line-height:1.45;font-size:14px}.customer{background:#fff;border:1px solid var(--line)}.ai{background:#dff8eb;margin-left:auto}.composer{display:flex;gap:8px;margin-top:14px}.composer input{flex:1;padding:12px;border:1px solid var(--line);border-radius:9px}.quote-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line)}.total{font-size:22px;font-weight:800;text-align:right;margin-top:16px}.notice{padding:13px 15px;background:#fff8e8;border:1px solid #f6dfaa;border-radius:10px;color:#7c5a13;margin:14px 0}.pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.price{font-size:28px;font-weight:850;margin:8px 0}.pricecard{min-height:290px}.pricecard.featured{border:2px solid var(--green)}ul{padding-left:19px;line-height:1.9;color:#516173}.toast{position:fixed;right:25px;bottom:25px;background:#102033;color:#fff;padding:13px 17px;border-radius:10px;display:none}.mobilebar{display:none}
+@media(max-width:850px){.sidebar{display:none}.main{margin-left:0;padding:18px;padding-bottom:80px}.grid{grid-template-columns:repeat(2,1fr)}.pricing{grid-template-columns:1fr}.mobilebar{display:flex;position:fixed;bottom:0;left:0;right:0;background:#102033;padding:8px;z-index:5}.mobilebar button{flex:1;background:transparent;border:0;color:#fff;padding:9px 3px;font-size:11px}.top h1{font-size:21px}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="logo">Rens<span>Help</span></div>
+  <div class="tag">Turn more enquiries into paying jobs.</div>
+  <div class="nav">
+    <button class="active" data-screen="dashboard">⌂ Dashboard</button>
+    <button data-screen="enquiries">✉ Enquiries</button>
+    <button data-screen="customers">♙ Customers</button>
+    <button data-screen="jobs">▣ Jobs & Calendar</button>
+    <button data-screen="pricing">★ Plans</button>
+  </div>
+</aside>
+<main class="main">
+  <div class="screen active" id="dashboard">
+    <div class="top"><div><h1>Good morning, Dave 👋</h1><div class="muted">Here's what's happening today.</div></div><span class="pill">AI assistant ON</span></div>
+    <div class="grid">
+      <div class="card stat"><div class="muted">New enquiries</div><div class="num">3</div><div class="muted">2 need attention</div></div>
+      <div class="card stat"><div class="muted">Quotes pending</div><div class="num">2</div><div class="muted">£4,250 total</div></div>
+      <div class="card stat"><div class="muted">Jobs today</div><div class="num">1</div><div class="muted">Next at 11:30</div></div>
+      <div class="card stat"><div class="muted">Won this month</div><div class="num">£2,100</div><div class="muted">+18% vs last month</div></div>
+    </div>
+    <div class="section card">
+      <div class="sectionhead"><h2>New enquiries</h2><button class="btn" onclick="show('enquiries')">View all</button></div>
+      <div class="lead"><div class="person"><div class="avatar">SJ</div><div><b>Sarah Johnson</b><div class="muted">Bathroom renovation · Manchester</div></div></div><div class="actions"><span class="status new">NEW</span><button class="btn" onclick="show('ai')">View enquiry</button></div></div>
+      <div class="lead"><div class="person"><div class="avatar">JS</div><div><b>John Smith</b><div class="muted">Kitchen electrical · M20</div></div></div><div class="actions"><span class="status">QUALIFYING</span><button class="btn secondary" onclick="show('enquiries')">Open</button></div></div>
+      <div class="lead"><div class="person"><div class="avatar">EB</div><div><b>Emma Brown</b><div class="muted">Boiler service · Stockport</div></div></div><div class="actions"><span class="status follow">FOLLOW-UP</span><button class="btn secondary" onclick="show('enquiries')">Open</button></div></div>
+    </div>
+  </div>
+
+  <div class="screen" id="enquiries">
+    <div class="top"><div><h1>Enquiries</h1><div class="muted">Every opportunity in one place.</div></div><button class="btn" onclick="show('ai')">+ New enquiry</button></div>
+    <div class="card">
+      <div class="lead"><div class="person"><div class="avatar">SJ</div><div><b>Sarah Johnson</b><div class="muted">Bathroom renovation · Photos received · £3,000–£5,000</div></div></div><div class="actions"><span class="status new">NEW</span><button class="btn" onclick="show('ai')">Open</button></div></div>
+      <div class="lead"><div class="person"><div class="avatar">JS</div><div><b>John Smith</b><div class="muted">Kitchen electrical · M20 · £800–£1,200</div></div></div><div class="actions"><span class="status">QUALIFYING</span><button class="btn secondary">Open</button></div></div>
+      <div class="lead"><div class="person"><div class="avatar">EB</div><div><b>Emma Brown</b><div class="muted">Boiler service · Stockport · £150–£250</div></div></div><div class="actions"><span class="status follow">FOLLOW-UP</span><button class="btn secondary">Open</button></div></div>
+    </div>
+  </div>
+
+  <div class="screen" id="ai">
+    <div class="top"><div><h1>Sarah Johnson</h1><div class="muted">Bathroom renovation · AI enquiry assistant</div></div><span class="pill">AI handling enquiry</span></div>
+    <div class="card conversation">
+      <div class="bubble customer"><b>Sarah:</b><br>Hi mate, I need a new bathroom fitted. How much would it be?</div>
+      <div class="bubble ai"><b>RensHelp AI:</b><br>Hi Sarah, thanks for getting in touch. We'd be happy to help. Could you send your postcode, a couple of photos of the bathroom and let us know roughly what you'd like changing?</div>
+      <div class="bubble customer"><b>Sarah:</b><br>I'm in M20. I want the bath removed and a walk-in shower, new vanity and flooring. I've sent some photos.</div>
+      <div class="bubble ai"><b>RensHelp AI:</b><br>Thanks Sarah — I've got the photos and details. I'll pass this over to the team. They'll review everything and get back to you with the next steps.</div>
+      <div class="notice"><b>Lead qualified.</b> 4 photos received · M20 · Bathroom renovation · Customer wants work within 2 weeks.</div>
+      <div class="actions"><button class="btn" onclick="show('quote')">Create quote</button><button class="btn secondary" onclick="toast('Customer call opened')">Call customer</button><button class="btn secondary" onclick="toast('Lead marked as reviewed')">Mark reviewed</button></div>
+    </div>
+  </div>
+
+  <div class="screen" id="quote">
+    <div class="top"><div><h1>Create quote</h1><div class="muted">Sarah Johnson · Bathroom renovation</div></div></div>
+    <div class="card" style="max-width:760px">
+      <div class="quote-row"><span>Labour</span><b>£1,800</b></div>
+      <div class="quote-row"><span>Materials</span><b>£1,250</b></div>
+      <div class="quote-row"><span>Additional work</span><b>£450</b></div>
+      <div class="total">Total £3,500</div>
+      <div class="actions" style="margin-top:18px"><button class="btn" onclick="show('followup');toast('Quote sent to Sarah')">Preview & send</button><button class="btn secondary" onclick="toast('Quote saved')">Save draft</button></div>
+    </div>
+  </div>
+
+  <div class="screen" id="followup">
+    <div class="top"><div><h1>Quote follow-up</h1><div class="muted">Keep good enquiries from going cold.</div></div></div>
+    <div class="card" style="max-width:760px">
+      <div class="notice"><b>Sarah hasn't responded to the £3,500 quote.</b><br>Suggested follow-up after 3 days.</div>
+      <div class="bubble ai" style="margin-left:0">Hi Sarah, just checking you've had a chance to look over the quote. If you have any questions, feel free to give us a shout.</div>
+      <div class="actions"><button class="btn" onclick="toast('Follow-up sent ✓')">Send now</button><button class="btn secondary" onclick="toast('Follow-up scheduled for 3 days')">Schedule</button></div>
+    </div>
+  </div>
+
+  <div class="screen" id="customers">
+    <div class="top"><div><h1>Customers</h1><div class="muted">Your customer history, organised.</div></div><button class="btn" onclick="toast('New customer form opened')">+ Add customer</button></div>
+    <div class="card">
+      <div class="lead"><div class="person"><div class="avatar">SJ</div><div><b>Sarah Johnson</b><div class="muted">3 enquiries · 2 quotes · 1 job</div></div></div><button class="btn secondary">View</button></div>
+      <div class="lead"><div class="person"><div class="avatar">JS</div><div><b>John Smith</b><div class="muted">2 enquiries · 1 quote · 0 jobs</div></div></div><button class="btn secondary">View</button></div>
+    </div>
+  </div>
+
+  <div class="screen" id="jobs">
+    <div class="top"><div><h1>Jobs & Calendar</h1><div class="muted">Stay organised without the admin headache.</div></div><button class="btn" onclick="toast('New job form opened')">+ Add job</button></div>
+    <div class="card">
+      <div class="lead"><div><b>08:00 — Bathroom renovation</b><div class="muted">Sarah Johnson · Manchester</div></div><span class="status new">TODAY</span></div>
+      <div class="lead"><div><b>11:30 — Boiler service</b><div class="muted">Emma Brown · Stockport</div></div><span class="status">BOOKED</span></div>
+      <div class="lead"><div><b>14:00 — Kitchen electrical</b><div class="muted">John Smith · M20</div></div><span class="status">BOOKED</span></div>
+    </div>
+  </div>
+
+  <div class="screen" id="pricing">
+    <div class="top"><div><h1>Choose your plan</h1><div class="muted">Start free, upgrade when RensHelp starts winning you work.</div></div></div>
+    <div class="pricing">
+      <div class="card pricecard"><b>Free</b><div class="price">£0</div><div class="muted">Try RensHelp</div><ul><li>5 active leads</li><li>10 customers</li><li>3 quotes/month</li><li>Basic lead management</li></ul><button class="btn secondary" onclick="toast('Free plan selected')">Current plan</button></div>
+      <div class="card pricecard featured"><b>Pro</b><div class="price">£9.99</div><div class="muted">For growing trades</div><ul><li>Unlimited leads & customers</li><li>Unlimited quotes</li><li>AI-assisted replies</li><li>Lead qualification</li><li>Quote follow-ups</li></ul><button class="btn" onclick="toast('Checkout would open here')">Start 7-day trial</button></div>
+      <div class="card pricecard"><b>Pro+</b><div class="price">£14.99</div><div class="muted">Automation plan</div><ul><li>Everything in Pro</li><li>AI auto-responder</li><li>Automated qualification</li><li>Automated follow-ups</li><li>WhatsApp integration</li></ul><button class="btn" onclick="toast('Checkout would open here')">Start 7-day trial</button></div>
+    </div>
+  </div>
+</main>
+</div>
+<div class="mobilebar">
+  <button onclick="show('dashboard')">Home</button><button onclick="show('enquiries')">Enquiries</button><button onclick="show('customers')">Customers</button><button onclick="show('jobs')">Jobs</button><button onclick="show('pricing')">Plans</button>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+function show(id){
+ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.screen===id));
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>show(b.dataset.screen)));
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',2200)}
+</script>
+</body>
+</html>
